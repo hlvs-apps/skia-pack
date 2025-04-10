@@ -5,13 +5,13 @@ This repo is dedicated to building Skia binaries for use in [Skiko](https://gith
 
 ## Prebuilt binaries
 
-Prebuilt binaries can be found [in releases](https://github.com/JetBrains/skia-pack/releases).
+Prebuilt binaries can be found [in releases](https://github.com/hlvs-apps/skia-pack/releases).
 
 ## Building next version of Skia
 
 1. Find the release commit in [Skia repository](https://github.com/google/skia) (look for chrome/mXXX branch)
-2. Rebase `skiko` branch in [Skia fork repository](https://github.com/JetBrains/skia) on this commit and force push
-3. Update `version` in [.github/workflows/build.yml](https://github.com/JetBrains/skia-pack/blob/master/.github/workflows/build.yml).
+2. Rebase `skiko` branch in [Skia fork repository](https://github.com/hlvs-apps/skia) on this commit and force push
+3. Update `version` in [.github/workflows/build.yml](https://github.com/hlvs-apps/skia-pack/blob/master/.github/workflows/build.yml).
 
 ## Building locally
 
