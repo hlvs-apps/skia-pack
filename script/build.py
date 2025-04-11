@@ -27,6 +27,7 @@ def main():
 
   args += [
     'target_cpu="' + machine + '"',
+    'skia_use_freetype=true',
     'skia_use_system_expat=false',
     'skia_use_system_libjpeg_turbo=false',
     'skia_use_system_libpng=false',
@@ -38,7 +39,10 @@ def main():
     'skia_use_system_harfbuzz=false',
     'skia_pdf_subset_harfbuzz=true',
     'skia_use_system_icu=false',
-    'skia_enable_skottie=true'
+    'skia_enable_skottie=true',
+    'skia_enable_fontmgr_custom_directory=false',
+    'skia_enable_fontmgr_custom_embedded=false',
+    'skia_enable_fontmgr_custom_empty=true'
   ]
 
   if isMacos or isIos or isTvos:
