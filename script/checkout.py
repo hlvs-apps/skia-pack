@@ -31,11 +31,15 @@ def main():
   if not os.path.exists("depot_tools"):
     subprocess.check_call(["git", "clone", "--config", "core.autocrlf=input", "https://chromium.googlesource.com/chromium/tools/depot_tools.git", "depot_tools"])
 
-  match = re.match('(m\\d+)(?:-([0-9a-f]+)(?:-([1-9][0-9]*))?)?', args.version)
+  match = re.match(r'^m\d+.*$', args.version)
   if not match:
-    raise Exception('Expected --version "m<ver>-<sha>", got "' + args.version + '"')
+    raise Exception('Expected branch name starting with "m<number>", got "' + args.version + '"')
 
-  commit = match.group(2)
+  sha_match = re.match(r'^(.*)-(?:([0-9a-f]{6,40}))(?:-(\d+))?$', args.version)
+  if sha_match:
+    commit = sha_match.group(2)
+  else:
+    commit = args.version
   checkout_skia(commit)
 
   # git deps
