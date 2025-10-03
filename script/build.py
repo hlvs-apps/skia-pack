@@ -42,7 +42,8 @@ def main():
     'skia_enable_skottie=true',
     'skia_enable_fontmgr_custom_directory=false',
     'skia_enable_fontmgr_custom_embedded=false',
-    'skia_enable_fontmgr_custom_empty=true'
+    'skia_enable_fontmgr_custom_empty=true',
+    'skia_enable_svg=true'
   ]
 
   if isMacos or isIos or isTvos:
@@ -134,7 +135,6 @@ def main():
         'skia_gl_standard="webgl"',
         'skia_use_gl=true',
         'skia_enable_gpu=true',
-        'skia_enable_svg=true', # other targets have this set in skia.gni
         'skia_use_expat=true',   # other targets have this set in skia.gni
         'extra_cflags=["-DSK_SUPPORT_GPU=1", "-DSK_GL", "-DSK_DISABLE_LEGACY_SHADERCONTEXT", "-sSUPPORT_LONGJMP=wasm"]'
     ]
