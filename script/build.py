@@ -43,6 +43,7 @@ def main():
     'skia_enable_fontmgr_custom_directory=false',
     'skia_enable_fontmgr_custom_embedded=false',
     'skia_enable_fontmgr_custom_empty=true',
+    'skia_use_expat=true',
     'skia_enable_svg=true'
   ]
 
@@ -77,13 +78,13 @@ def main():
         # TODO: use clang on all targets!
         args += [
             'skia_gl_standard="gles"',
-            'extra_cflags_cc=["-fno-exceptions", "-fno-rtti", "-flax-vector-conversions=all", "-D_GLIBCXX_USE_CXX11_ABI=0"]',
+            'extra_cflags_cc=["-fno-exceptions", "-frtti", "-flax-vector-conversions=all", "-D_GLIBCXX_USE_CXX11_ABI=0"]',
             'cc="clang"',
             'cxx="clang++"',
         ]
     else:
         args += [
-            'extra_cflags_cc=["-fno-exceptions", "-fno-rtti","-D_GLIBCXX_USE_CXX11_ABI=0"]',
+            'extra_cflags_cc=["-fno-exceptions", "-frtti","-D_GLIBCXX_USE_CXX11_ABI=0"]',
             'cc="gcc-9"',
             'cxx="g++-9"',
         ]
@@ -135,7 +136,6 @@ def main():
         'skia_gl_standard="webgl"',
         'skia_use_gl=true',
         'skia_enable_gpu=true',
-        'skia_use_expat=true',   # other targets have this set in skia.gni
         'extra_cflags=["-DSK_SUPPORT_GPU=1", "-DSK_GL", "-DSK_DISABLE_LEGACY_SHADERCONTEXT", "-sSUPPORT_LONGJMP=wasm"]'
     ]
 
