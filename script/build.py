@@ -139,19 +139,31 @@ def main():
         'extra_cflags=["-DSK_SUPPORT_GPU=1", "-DSK_GL", "-DSK_DISABLE_LEGACY_SHADERCONTEXT", "-sSUPPORT_LONGJMP=wasm"]'
     ]
 
+  ninja_path = os.path.join('..', tools_dir, ninja)
   if 'linux' == host:
     if 'arm64' == host_machine:
       tools_dir = 'tools'
       ninja = 'ninja-linux-arm64'
+      ninja_path = os.path.join('..', tools_dir, ninja)
     elif 'x64' == host_machine:
-      tools_dir = 'depot_tools'
-      ninja = 'ninja-linux64'
+      ninja_linux64 = os.path.join('..', 'depot_tools', 'ninja-linux64')
+      ninja_cipd = os.path.join('..', 'depot_tools', '.cipd_bin', 'ninja')
+      if os.path.exists(ninja_linux64):
+        ninja_path = ninja_linux64
+      elif os.path.exists(ninja_cipd):
+        ninja_path = ninja_cipd
+      else:
+        ninja_path = os.path.join('..', 'depot_tools', 'ninja')
+    else:
+      ninja_path = os.path.join('..', tools_dir, ninja)
+  else:
+    ninja_path = os.path.join('..', tools_dir, ninja)
 
   out = os.path.join('out', build_type + '-' + target + '-' + machine)
   gn = 'gn.exe' if 'windows' == host else 'gn'
   print([os.path.join('bin', gn), 'gen', out, '--args=' + ' '.join(args)])
   subprocess.check_call([os.path.join('bin', gn), 'gen', out, '--args=' + ' '.join(args)])
-  subprocess.check_call([os.path.join('..', tools_dir, ninja), '-C', out, 'skia', 'modules'])
+  subprocess.check_call([ninja_path, '-C', out, 'skia', 'modules'])
 
   return 0
 
