@@ -154,9 +154,9 @@ def main():
       else:
         ninja_path = os.path.join('..', 'depot_tools', 'ninja')
     else:
-      ninja_path = os.path.join('..', tools_dir, ninja)
+      ninja_path = os.path.join('..', 'depot_tools', 'ninja')
   else:
-    ninja_path = os.path.join('..', tools_dir, ninja)
+    ninja_path = os.path.join('..', 'depot_tools', 'ninja.bat' if 'windows' == host else 'ninja')
 
   out = os.path.join('out', build_type + '-' + target + '-' + machine)
   gn = 'gn.exe' if 'windows' == host else 'gn'
