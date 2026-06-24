@@ -144,10 +144,13 @@ def main():
   elif 'linux' == host and 'x64' == host_machine:
     ninja_linux64 = os.path.join('..', 'depot_tools', 'ninja-linux64')
     ninja_cipd = os.path.join('..', 'depot_tools', '.cipd_bin', 'ninja')
+    system_ninja = shutil.which('ninja')
     if os.path.exists(ninja_linux64):
       ninja_path = ninja_linux64
     elif os.path.exists(ninja_cipd):
       ninja_path = ninja_cipd
+    elif system_ninja:
+      ninja_path = system_ninja
     else:
       ninja_path = os.path.join('..', 'depot_tools', 'ninja')
   else:
