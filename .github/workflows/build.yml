@@ -16,7 +16,7 @@ permissions:
   contents: write
 
 env:
-  version: m132-pdf-drawable-cache-8eddee71
+  version: m132-pdf-drawable-cache-0c8677237e
 
 jobs:
   macos:
