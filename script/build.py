@@ -139,20 +139,15 @@ def main():
         'extra_cflags=["-DSK_SUPPORT_GPU=1", "-DSK_GL", "-DSK_DISABLE_LEGACY_SHADERCONTEXT", "-sSUPPORT_LONGJMP=wasm"]'
     ]
 
-  if 'linux' == host:
-    if 'arm64' == host_machine:
-      tools_dir = 'tools'
-      ninja = 'ninja-linux-arm64'
-      ninja_path = os.path.join('..', tools_dir, ninja)
-    elif 'x64' == host_machine:
-      ninja_linux64 = os.path.join('..', 'depot_tools', 'ninja-linux64')
-      ninja_cipd = os.path.join('..', 'depot_tools', '.cipd_bin', 'ninja')
-      if os.path.exists(ninja_linux64):
-        ninja_path = ninja_linux64
-      elif os.path.exists(ninja_cipd):
-        ninja_path = ninja_cipd
-      else:
-        ninja_path = os.path.join('..', 'depot_tools', 'ninja')
+  if 'linux' == host and 'arm64' == host_machine:
+    ninja_path = os.path.join('..', 'tools', 'ninja-linux-arm64')
+  elif 'linux' == host and 'x64' == host_machine:
+    ninja_linux64 = os.path.join('..', 'depot_tools', 'ninja-linux64')
+    ninja_cipd = os.path.join('..', 'depot_tools', '.cipd_bin', 'ninja')
+    if os.path.exists(ninja_linux64):
+      ninja_path = ninja_linux64
+    elif os.path.exists(ninja_cipd):
+      ninja_path = ninja_cipd
     else:
       ninja_path = os.path.join('..', 'depot_tools', 'ninja')
   else:
