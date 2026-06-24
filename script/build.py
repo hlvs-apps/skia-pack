@@ -144,6 +144,7 @@ def main():
       tools_dir = 'tools'
       ninja = 'ninja-linux-arm64'
     elif 'x64' == host_machine:
+      tools_dir = 'depot_tools'
       ninja = 'ninja-linux64'
 
   out = os.path.join('out', build_type + '-' + target + '-' + machine)
