@@ -139,7 +139,6 @@ def main():
         'extra_cflags=["-DSK_SUPPORT_GPU=1", "-DSK_GL", "-DSK_DISABLE_LEGACY_SHADERCONTEXT", "-sSUPPORT_LONGJMP=wasm"]'
     ]
 
-  ninja_path = os.path.join('..', tools_dir, ninja)
   if 'linux' == host:
     if 'arm64' == host_machine:
       tools_dir = 'tools'
