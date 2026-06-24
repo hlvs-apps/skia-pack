@@ -139,9 +139,13 @@ def main():
         'extra_cflags=["-DSK_SUPPORT_GPU=1", "-DSK_GL", "-DSK_DISABLE_LEGACY_SHADERCONTEXT", "-sSUPPORT_LONGJMP=wasm"]'
     ]
 
-  if 'linux' == host and 'arm64' == host_machine:
-    tools_dir = 'tools'
-    ninja = 'ninja-linux-arm64'
+  if 'linux' == host:
+    if 'arm64' == host_machine:
+      tools_dir = 'tools'
+      ninja = 'ninja-linux-arm64'
+    elif 'x64' == host_machine:
+      tools_dir = 'depot_tools'
+      ninja = 'ninja-linux64'
 
   out = os.path.join('out', build_type + '-' + target + '-' + machine)
   gn = 'gn.exe' if 'windows' == host else 'gn'
