@@ -23,11 +23,15 @@ jobs:
     runs-on: ${{ fromJson('{"macos":"macos-15-intel","ios":"macos-15-intel","iosSim":"macos-15-intel","tvos":"macos-15-intel","tvosSim":"macos-15-intel"}')[matrix.target] }}
     strategy:
       matrix:
-        target: ["macos"] # "ios", "iosSim", "tvos", "tvosSim"
+        target: ["macos", "ios", "iosSim"] # "tvos", "tvosSim"
         machine: ["x64", "arm64"]
         build_type: [Release, Debug]
         exclude:
           - target: tvos
+            machine: x64
+          # iOS devices are arm64 only; there is no x64 iOS device slice.
+          # (iosSim keeps both x64 and arm64 simulator builds.)
+          - target: ios
             machine: x64
       fail-fast: false
     steps:
