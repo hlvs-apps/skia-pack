@@ -16,8 +16,7 @@ permissions:
   contents: write
 
 env:
-  version: m132-pdf-drawable-cache-0c8677237e
-
+  version: m132-pdf-drawable-cache-318925658a
 jobs:
   macos:
     runs-on: ${{ fromJson('{"macos":"macos-15-intel","ios":"macos-15-intel","iosSim":"macos-15-intel","tvos":"macos-15-intel","tvosSim":"macos-15-intel"}')[matrix.target] }}
